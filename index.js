@@ -31,11 +31,6 @@ class ChessNode {
     return result;
   }  
 }
-ch1 = new ChessNode([1,1]);
-ch1.neighbors = ch1.getValidMoves()
-console.log('ch1.neighbors:', ch1.neighbors)
-
-
 
 //TODO: create graph's adjacency list
 //TODO: create function to create adjList
@@ -51,10 +46,8 @@ function makeChessBoardMatrix() {
     board.push(row)
   }
   return board
-  // return Array(8).fill(Array(8));
 }
 
-console.log('makeChessBoardMatrix():', makeChessBoardMatrix())
 
 function createVertex(coordX, coordY) {
   new ChessNode([]);
