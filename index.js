@@ -5,15 +5,57 @@
 class ChessNode {
   constructor(coord) {
     this.coord = coord;
+    this.neighbors = this.getValidMoves()
   }
+  offsets = [
+    [1, 2],
+    [-1, 2],
+    [1, -2],
+    [-1, -2],
+    [2, 1],
+    [-2, 1],
+    [2, -1],
+    [-2, -1],
+  ]
+  getValidMoves() {
+    const validCoords = [];
+    const result = this.offsets.reduce((validCoords, offset) => {
+      const newCoordX = offset[0] + this.coord[0];
+      const newCoordY = offset[1] + this.coord[1];
+      //0~7 are the only valid squares
+      if (newCoordX <= 7 && newCoordX >= 0 && newCoordY >= 0 && newCoordY <= 7) {
+        validCoords.push([newCoordX, newCoordY]);
+      }
+      return validCoords;
+    }, []);
+    return result;
+  }  
 }
+ch1 = new ChessNode([1,1]);
+ch1.neighbors = ch1.getValidMoves()
+console.log('ch1.neighbors:', ch1.neighbors)
+
+
 
 //TODO: create graph's adjacency list
 //TODO: create function to create adjList
 function makeChessBoardMatrix() {
-  //chess board has 8x8 squares squares
-  return Array(8).fill(Array(8));
+  //chess board has 8x8 squares
+  const boardlength = 8
+  const board = []
+  for (let rowIndex = 0; rowIndex < boardlength ; rowIndex++) {
+    const row = []
+    for(let colIndex = 0; colIndex < boardlength ; colIndex++ ){  
+      row.push(new ChessNode([rowIndex,colIndex]))
+    }
+    board.push(row)
+  }
+  return board
+  // return Array(8).fill(Array(8));
 }
+
+console.log('makeChessBoardMatrix():', makeChessBoardMatrix())
+
 function createVertex(coordX, coordY) {
   new ChessNode([]);
 }
@@ -43,9 +85,9 @@ function getAdjVertices() {
       return validCoords;
     }, []);
     return result;
-  }
+  }  
 }
-getAdjVertices();
+
 
 function validateSquare() {}
 
