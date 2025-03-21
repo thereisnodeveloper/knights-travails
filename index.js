@@ -7,7 +7,7 @@ class ChessNode {
     this.coord = coord;
     this.neighbors = this.getValidMoves()
   }
-  offsets = [
+  #offsets = [
     [1, 2],
     [-1, 2],
     [1, -2],
@@ -19,7 +19,7 @@ class ChessNode {
   ]
   getValidMoves() {
     const validCoords = [];
-    const result = this.offsets.reduce((validCoords, offset) => {
+    const result = this.#offsets.reduce((validCoords, offset) => {
       const newCoordX = offset[0] + this.coord[0];
       const newCoordY = offset[1] + this.coord[1];
       //0~7 are the only valid squares
@@ -31,6 +31,7 @@ class ChessNode {
     return result;
   }  
 }
+//TODO: write algorithm for navigating graph
 
 //TODO: create graph's adjacency list
 //TODO: create function to create adjList
@@ -46,6 +47,45 @@ function makeChessBoardMatrix() {
     board.push(row)
   }
   return board
+}
+const theBoard = makeChessBoardMatrix()
+console.log(theBoard)
+//??? would it be okay to change the contents of the nodes themselves, instead
+//of keeping track of paths in the searcher?
+
+function searchPath(){
+  //get CURRENTNODE's neighbors
+  
+  //if no PATH array
+  //loop for each neighbor, create a PATH array
+    // PATHS[].push CURRENTNODE
+  // save PATHS (list of nodes visited so far)
+  //if visited before in current JOURNEY? skip, else..
+    //look for NODE in CURRENTPATH
+
+
+  //check if any match TARGETSQUARE
+    //if there aren't,continue 
+    //loop repeat for all neighbors
+    //NOTE: the current path that's been 
+    //if there are, set MAXJUMPS = PATH.length
+    
+
+  //loop for each neighbor, RECURSIVELY call itself fn(currentNode.neighbor)
+    //pass PATH[]
+    //pass numOfJumps
+    //
+
+  //fn get shortest path
+  //return PATH[].map + max
+
+  //TODO add constraint to algorithm
+  //DONT jump more times than MAXJUMPS
+  //GET CURRENTPOSITION vs. TARGETPOSITION
+  // PREFER paths that are closest to the to the vector
+  
+
+
 }
 
 
